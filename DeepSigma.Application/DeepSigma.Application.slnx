@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../DeepSigma.Application.Test/DeepSigma.Application.Test.csproj" />
+  <Project Path="DeepSigma.Application.csproj" />
+</Solution>
