@@ -27,7 +27,7 @@ namespace DeepSigma.WinUI;
 /// &lt;Button ToolTipService.ToolTip="{x:Bind ShowHideToolTip.Value, Mode=OneWay}" /&gt;
 /// </code>
 /// </remarks>
-public partial class ObservableProperty<T> : INotifyPropertyChanged where T : notnull
+public partial class ObservableValue<T> : INotifyPropertyChanged
 {
     /// <summary>
     /// Property changed event that is raised when the <see cref="Value" /> property changes.
@@ -38,11 +38,11 @@ public partial class ObservableProperty<T> : INotifyPropertyChanged where T : no
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ObservableProperty{T}" /> class with the specified initial value.
+    /// Initializes a new instance of the <see cref="ObservableValue{T}" /> class with the specified initial value.
     /// </summary>
     /// <param name="value"></param>
     [SetsRequiredMembers]
-    public ObservableProperty(T value)
+    public ObservableValue(T value)
     {
         Value = value;
     }
@@ -70,8 +70,15 @@ public partial class ObservableProperty<T> : INotifyPropertyChanged where T : no
     /// <summary>
     /// Defines an implicit conversion from PropertyChangeNotificationWrapper&lt;T&gt; to T, allowing the wrapper to be used directly as its underlying value type.
     /// </summary>
+    /// <remarks>
+    /// Example usage:
+    /// <code>
+    /// ObservableProperty&lt;string&gt; wrapper = new("Hello");
+    /// string value = wrapper; // Implicitly converts to string
+    /// </code>
+    /// </remarks>
     /// <param name="wrapper">The wrapper instance to convert.</param>
-    public static implicit operator T(ObservableProperty<T> wrapper) => wrapper.Value;
+    public static implicit operator T(ObservableValue<T> wrapper) => wrapper.Value;
 
 
     // Was going to enable implicit conversion from T to ObservableProperty<T> but decided against it since setting a value my change the referance object which could cause issues with binding. Instead, you can use the constructor to create a new ObservableProperty<T> instance with the desired value.
