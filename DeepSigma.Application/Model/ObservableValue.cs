@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace DeepSigma.WinUI;
+namespace DeepSigma.Application.Model;
 
 /// <summary>
 /// Provides a generic observable value wrapper that raises
