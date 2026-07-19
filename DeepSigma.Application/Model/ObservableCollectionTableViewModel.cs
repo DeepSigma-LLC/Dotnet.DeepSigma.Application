@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.ObjectModel;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -9,7 +10,7 @@ namespace DeepSigma.Application.Model;
 /// A generic view model for managing a collection of items.
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class ObservableCollectionTableViewModel<T>() where T : class
+public class ObservableCollectionTableViewModel<T>() : IEnumerable<T> where T : class
 {
     /// <summary>
     /// Gets the observable collection of items managed by this view model.
@@ -97,6 +98,14 @@ public class ObservableCollectionTableViewModel<T>() where T : class
     {
         return Items.Select(selector);
     }
+
+    /// <inheritdoc/>
+    public IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
+
+
+    /// <inheritdoc/>
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    
 }
 
 
